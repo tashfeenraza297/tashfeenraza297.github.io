@@ -153,7 +153,7 @@ function createParticles() {
         particle.style.position = 'absolute';
         particle.style.width = `${Math.random() * 3 + 1}px`;
         particle.style.height = particle.style.width;
-        particle.style.background = 'rgba(59, 130, 246, 0.5)';
+        particle.style.background = 'rgba(139, 92, 246, 0.5)';
         particle.style.borderRadius = '50%';
         particle.style.left = `${Math.random() * 100}%`;
         particle.style.top = `${Math.random() * 100}%`;
@@ -347,6 +347,50 @@ preloadFonts();
 // ===================================
 // Console Easter Egg
 // ===================================
-console.log('%c👋 Hey there, fellow developer!', 'font-size: 20px; font-weight: bold; color: #3b82f6;');
+console.log('%c👋 Hey there, fellow developer!', 'font-size: 20px; font-weight: bold; color: #8b5cf6;');
 console.log('%cLooking at the code? I appreciate your curiosity!', 'font-size: 14px; color: #06b6d4;');
 console.log('%cFeel free to reach out: razatashfeen045@gmail.com', 'font-size: 12px; color: #94a3b8;');
+
+// ===================================
+// Video Modal Functions
+// ===================================
+function openVideoModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeVideoModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        // Stop video playback by reloading iframe
+        const iframe = modal.querySelector('iframe');
+        if (iframe) {
+            const src = iframe.src;
+            iframe.src = '';
+            iframe.src = src;
+        }
+    }
+}
+
+// Close modal when clicking outside
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('video-modal')) {
+        const modalId = e.target.id;
+        closeVideoModal(modalId);
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const activeModal = document.querySelector('.video-modal.active');
+        if (activeModal) {
+            closeVideoModal(activeModal.id);
+        }
+    }
+});
