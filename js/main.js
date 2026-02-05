@@ -1,4 +1,165 @@
 // ===================================
+// Loading Screen
+// ===================================
+window.addEventListener('load', () => {
+    const loadingScreen = document.getElementById('loadingScreen');
+    setTimeout(() => {
+        loadingScreen.classList.add('hidden');
+    }, 800);
+    
+    // Add loaded class to body for CSS animations
+    document.body.classList.add('loaded');
+    
+    // Trigger initial scroll reveal
+    revealOnScroll();
+    
+    // Update active nav link
+    updateActiveNavLink();
+    
+    // Start typing effect
+    setTimeout(typeEffect, 1000);
+    
+    // Start stats counter animation
+    animateStats();
+});
+
+// ===================================
+// Theme Toggle
+// ===================================
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = themeToggle.querySelector('i');
+
+// Check for saved theme preference or default to dark
+const currentTheme = localStorage.getItem('theme') || 'dark';
+if (currentTheme === 'light') {
+    document.body.classList.add('light-theme');
+    themeIcon.classList.remove('fa-moon');
+    themeIcon.classList.add('fa-sun');
+}
+
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+    
+    // Update icon
+    if (document.body.classList.contains('light-theme')) {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'light');
+    } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'dark');
+    }
+});
+
+// ===================================
+// Stats Counter Animation
+// ===================================
+function animateStats() {
+    const stats = document.querySelectorAll('.stat-number');
+    const speed = 200; // Animation speed
+    
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px'
+    };
+    
+    const animateNumber = (stat) => {
+        const target = +stat.getAttribute('data-target');
+        const increment = target / speed;
+        let count = 0;
+        
+        const updateCount = () => {
+            count += increment;
+            if (count < target) {
+                stat.textContent = Math.ceil(count);
+                requestAnimationFrame(updateCount);
+            } else {
+                stat.textContent = target;
+            }
+        };
+        
+        updateCount();
+    };
+    
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateNumber(entry.target);
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    stats.forEach(stat => {
+        statsObserver.observe(stat);
+    });
+}
+
+// ===================================
+// Contact Form Handling
+// ===================================
+const contactForm = document.getElementById('contactForm');
+const formMessage = document.getElementById('formMessage');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const submitButton = contactForm.querySelector('.form-submit');
+        const originalText = submitButton.innerHTML;
+        
+        // Disable button and show loading
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<i class=\"fas fa-spinner fa-spin\"></i> Sending...';
+        
+        // Get form data
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value
+        };
+        
+        try {
+            // Using FormSpree (replace with your FormSpree endpoint)
+            // Or you can use EmailJS, Web3Forms, etc.
+            const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            if (response.ok) {
+                formMessage.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
+                formMessage.className = 'form-message success';
+                contactForm.reset();
+            } else {
+                throw new Error('Failed to send message');
+            }
+        } catch (error) {
+            // Fallback: Open email client
+            const mailtoLink = `mailto:razatashfeen045@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`;
+            window.location.href = mailtoLink;
+            
+            formMessage.textContent = 'Opening your email client... If it doesn\'t work, please email me directly.';
+            formMessage.className = 'form-message success';
+        } finally {
+            // Re-enable button
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalText;
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+        }
+    });
+}
+
+// ===================================
 // Smooth Scrolling Navigation
 // ===================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -135,9 +296,7 @@ function typeEffect() {
 }
 
 // Start typing effect after page loads
-window.addEventListener('load', () => {
-    setTimeout(typeEffect, 1000);
-});
+// Removed - now called from window.load event
 
 // ===================================
 // Particle Background Animation
@@ -298,16 +457,7 @@ window.addEventListener('scroll', debounce(revealOnScroll, 10));
 // ===================================
 // Initialize Animations on Load
 // ===================================
-window.addEventListener('load', () => {
-    // Add loaded class to body for CSS animations
-    document.body.classList.add('loaded');
-    
-    // Trigger initial scroll reveal
-    revealOnScroll();
-    
-    // Update active nav link
-    updateActiveNavLink();
-});
+// Removed - consolidated into main window.load event at top of file
 
 // ===================================
 // Handle Window Resize

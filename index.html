@@ -11,17 +11,66 @@
     <meta property="og:title" content="Tashfeen Raza - AI Engineer & ML Specialist">
     <meta property="og:description" content="AI Engineer specializing in Agentic AI, LLM-powered automation, and RAG-based assistants">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tashfeenraza297.github.io">    
+    <meta property="og:url" content="https://tashfeenraza297.github.io">
+    <meta property="og:image" content="https://tashfeenraza297.github.io/assets/images/profile-photo.jpg">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Tashfeen Raza - AI Engineer & ML Specialist">
     <meta name="twitter:description" content="AI Engineer specializing in Agentic AI, LLM-powered automation, and RAG-based assistants">
     
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Tashfeen Raza",
+        "url": "https://tashfeenraza297.github.io",
+        "image": "https://tashfeenraza297.github.io/assets/images/profile-photo.jpg",
+        "jobTitle": "AI Engineer & Machine Learning Specialist",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "DASSOFT, NASTP"
+        },
+        "description": "AI Engineer specializing in Agentic AI, LLM-powered automation, and RAG-based assistants. Expertise in Machine Learning, Deep Learning, and Computer Vision.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Rawalpindi",
+            "addressCountry": "Pakistan"
+        },
+        "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "National University of Modern Languages (NUML)",
+            "location": "Islamabad, Pakistan"
+        },
+        "email": "razatashfeen045@gmail.com",
+        "telephone": "+92-307-5286602",
+        "sameAs": [
+            "https://github.com/tashfeenraza297",
+            "https://www.linkedin.com/in/tashfeen-raza-2a8b35253",
+            "https://www.fiverr.com/tashfeen348"
+        ],
+        "knowsAbout": [
+            "Artificial Intelligence",
+            "Machine Learning",
+            "Deep Learning",
+            "Large Language Models",
+            "Agentic AI",
+            "RAG Systems",
+            "Computer Vision",
+            "Natural Language Processing",
+            "PyTorch",
+            "TensorFlow",
+            "LangChain"
+        ]
+    }
+    </script>
+    
     <title>Tashfeen Raza - AI Engineer & ML Specialist</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/images/profile-photo.jpg">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -35,6 +84,22 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Skip to Content Link (Accessibility) -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div>
+            <div class="loader"></div>
+            <div class="loading-text">Loading Portfolio...</div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
@@ -62,7 +127,7 @@
         <div class="container hero-container">
             <div class="hero-content">
                 <div class="profile-photo-container">
-                    <img src="assets/profile-photo.jpg" alt="Tashfeen Raza - AI & Machine Learning Engineer" class="profile-photo">
+                    <img src="assets/images/profile-photo.jpg" alt="Tashfeen Raza - AI & Machine Learning Engineer" class="profile-photo">
                 </div>
                 <p class="hero-greeting">Hi, I'm</p>
                 <h1 class="hero-name">Tashfeen Raza</h1>
@@ -93,6 +158,14 @@
                     <a href="#projects" class="btn btn-primary">View Projects</a>
                     <a href="#contact" class="btn btn-secondary">Contact Me</a>
                 </div>
+                <div class="cv-buttons">
+                    <a href="assets/resume/Tashfeen_Raza_ML_Resume.pdf" download class="btn-cv" target="_blank">
+                        <i class="fas fa-download"></i> Download ML Resume
+                    </a>
+                    <a href="assets/resume/Tashfeen_Raza_Agentic_AI_Resume.pdf" download class="btn-cv ml" target="_blank">
+                        <i class="fas fa-download"></i> Download Agentic AI Resume
+                    </a>
+                </div>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -104,7 +177,7 @@
 
     <!-- About Section -->
     <section class="about section" id="about">
-        <div class="container">
+        <div class="container" id="main-content">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
@@ -127,6 +200,42 @@
                         I deploy production-ready systems using <strong>FastAPI, PyTorch, TensorFlow</strong>, and cloud 
                         platforms, always focusing on accuracy, scalability, and real-world impact.
                     </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <span class="stat-number" data-target="10">0</span>+
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <span class="stat-number" data-target="1">0</span>
+                    <div class="stat-label">Year of Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <span class="stat-number" data-target="20">0</span>+
+                    <div class="stat-label">Technologies Mastered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <span class="stat-number" data-target="2">0</span>+
+                    <div class="stat-label">Certifications</div>
                 </div>
             </div>
         </div>
@@ -249,8 +358,6 @@
                             <li>Implemented prompt optimization and workflow automation to improve report accuracy and incident response by <strong>30%</strong></li>
                             <li>Developed LLM-based modules for log parsing, anomaly detection, and structured report generation using <strong>LangChain</strong> and <strong>FastAPI</strong></li>
                             <li>Designed stress-test evaluation scenarios (edge cases, multi-step reasoning) and validated model outputs against expected behavior</li>
-                            <li>Collaborated with cross-functional teams to enhance usability, scalability, and performance of AI-powered security tools</li>
-                            <li>Maintained strict confidentiality and ensured all intellectual property remained company-owned</li>
                         </ul>
                         <div class="tech-stack">
                             <span class="tech-badge">LangChain</span>
@@ -274,6 +381,7 @@
                             <li>Built AI-powered SOC system with <strong>Agentic AI</strong> to automate L1/L2 analyst tasks, reducing triage time by <strong>40%</strong></li>
                             <li>Contributed to LLM automation prototypes using <strong>LangGraph</strong></li>
                             <li>Supported experimentation with <strong>RAG-based assistants</strong></li>
+                            <li>Evaluated locally deployed cybersecurity-specific LLMs on threat intelligence queries; benchmarked response accuracy and identified hallucination patterns</li>
                         </ul>
                         <div class="tech-stack">
                             <span class="tech-badge">LangGraph</span>
@@ -350,12 +458,12 @@
                         <span class="tech-badge">Keras</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/tashfeenraza297/covid19-ct-scan-detector" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
                         <button class="btn-demo" onclick="openVideoModal('video-modal-2')">
                             <i class="fas fa-play-circle"></i> Watch Demo
                         </button>
+                        <a href="https://github.com/tashfeenraza297/covid19-ct-scan-detector" target="_blank" rel="noopener noreferrer" class="project-link">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
                     </div>
                     <span class="project-note" style="margin-top: 0.5rem; display: block;"><i class="fas fa-exclamation-triangle"></i> Educational/demonstration only - NOT for clinical use</span>
                 </div>
@@ -592,6 +700,32 @@
                             </a>
                         </div>
                     </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" required placeholder="john@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required placeholder="Project Inquiry">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required placeholder="Your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                        <div class="form-message" id="formMessage"></div>
+                    </form>
                 </div>
             </div>
         </div>
