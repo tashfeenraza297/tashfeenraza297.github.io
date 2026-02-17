@@ -1,0 +1,42 @@
+name: Lighthouse CI Audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Audit with Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://tashfeenraza297.github.io
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          configJson: |
+            {
+              "ci": {
+                "assert": {
+                  "assertions": {
+                    "categories:performance": ["warn", { "minScore": 0.7 }],
+                    "categories:accessibility": ["warn", { "minScore": 0.8 }],
+                    "categories:best-practices": ["warn", { "minScore": 0.8 }],
+                    "categories:seo": ["warn", { "minScore": 0.8 }]
+                  }
+                }
+              }
+            }
+
+      - name: Validate HTML
+        uses: anishathalye/proof-html@v2
+        with:
+          directory: .
+          check_html: true
+          check_opengraph: false
+        continue-on-error: true

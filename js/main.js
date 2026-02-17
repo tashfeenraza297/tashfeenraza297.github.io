@@ -1,11 +1,12 @@
 // ===================================
-// Loading Screen
+// Loading Screen - Uses DOMContentLoaded for fast load
 // ===================================
-window.addEventListener('load', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const loadingScreen = document.getElementById('loadingScreen');
+    // Hide loading screen quickly after DOM is ready
     setTimeout(() => {
         loadingScreen.classList.add('hidden');
-    }, 800);
+    }, 400);
     
     // Add loaded class to body for CSS animations
     document.body.classList.add('loaded');
@@ -17,7 +18,7 @@ window.addEventListener('load', () => {
     updateActiveNavLink();
     
     // Start typing effect
-    setTimeout(typeEffect, 1000);
+    setTimeout(typeEffect, 600);
     
     // Start stats counter animation
     animateStats();
@@ -241,6 +242,11 @@ function updateActiveNavLink() {
 let lastScroll = 0;
 const navbar = document.getElementById('navbar');
 
+// ===================================
+// Back to Top Button
+// ===================================
+const backToTopBtn = document.getElementById('backToTop');
+
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
 
@@ -248,6 +254,15 @@ window.addEventListener('scroll', () => {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
+    }
+
+    // Show/hide back to top button
+    if (backToTopBtn) {
+        if (currentScroll > 500) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
     }
 
     updateActiveNavLink();
@@ -357,7 +372,7 @@ createParticles();
 // Scroll Reveal Animation
 // ===================================
 function revealOnScroll() {
-    const reveals = document.querySelectorAll('.skill-category, .project-card, .timeline-item, .education-card, .certifications, .contact-item');
+    const reveals = document.querySelectorAll('.skill-category, .project-card, .timeline-item, .education-card, .certifications, .contact-item, .stat-card');
     
     reveals.forEach((element) => {
         const windowHeight = window.innerHeight;
@@ -507,6 +522,12 @@ console.log('%cFeel free to reach out: razatashfeen045@gmail.com', 'font-size: 1
 function openVideoModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
+        // Lazy-load: only set iframe src when user clicks play
+        const iframe = modal.querySelector('iframe');
+        const videoSrc = modal.getAttribute('data-video-src');
+        if (iframe && videoSrc && !iframe.src) {
+            iframe.src = videoSrc;
+        }
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
@@ -517,12 +538,10 @@ function closeVideoModal(modalId) {
     if (modal) {
         modal.classList.remove('active');
         document.body.style.overflow = 'auto';
-        // Stop video playback by reloading iframe
+        // Stop video playback by clearing iframe src
         const iframe = modal.querySelector('iframe');
         if (iframe) {
-            const src = iframe.src;
             iframe.src = '';
-            iframe.src = src;
         }
     }
 }

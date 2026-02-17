@@ -72,13 +72,15 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
     <link rel="apple-touch-icon" href="assets/images/profile-photo.jpg">
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome (async for performance) -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts (async for performance) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"></noscript>
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -127,7 +129,7 @@
         <div class="container hero-container">
             <div class="hero-content">
                 <div class="profile-photo-container">
-                    <img src="assets/images/profile-photo.jpg" alt="Tashfeen Raza - AI & Machine Learning Engineer" class="profile-photo">
+                    <img src="assets/images/profile-photo.jpg" alt="Tashfeen Raza - AI & Machine Learning Engineer" class="profile-photo" loading="eager" decoding="async">
                 </div>
                 <p class="hero-greeting">Hi, I'm</p>
                 <h1 class="hero-name">Tashfeen Raza</h1>
@@ -205,6 +207,8 @@
         </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- Stats Section -->
     <section class="stats section">
         <div class="container">
@@ -240,6 +244,8 @@
             </div>
         </div>
     </section>
+
+    <div class="section-divider"></div>
 
     <!-- Skills Section -->
     <section class="skills section" id="skills">
@@ -340,6 +346,8 @@
         </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- Experience Section -->
     <section class="experience section" id="experience">
         <div class="container">
@@ -395,15 +403,20 @@
         </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- Projects Section -->
     <section class="projects section" id="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
                 <!-- Project 1: Smart Extract -->
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-video"></i>
+                <div class="project-card" style="animation-delay: 0s">
+                    <div class="project-thumbnail">
+                        <img src="assets/images/projects/smart-extract.png" alt="Smart Extract AI Surveillance System" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder')">
+                        <div class="project-thumbnail-overlay">
+                            <i class="fas fa-video"></i>
+                        </div>
                     </div>
                     <h3>Smart Extract - AI Surveillance System</h3>
                     <p class="project-label">Final Year Project | Full-Stack AI Application</p>
@@ -434,11 +447,14 @@
                 </div>
 
                 <!-- Project 2: COVID-19 Detection -->
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-lungs"></i>
+                <div class="project-card" style="animation-delay: 0.1s">
+                    <div class="project-thumbnail">
+                        <img src="assets/images/projects/covid19-detector.png" alt="COVID-19 CT Scan Detection System" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder')">
+                        <div class="project-thumbnail-overlay">
+                            <i class="fas fa-lungs"></i>
+                        </div>
                     </div>
-                    <h3>🫁 COVID-19 CT Scan Detection System</h3>
+                    <h3>COVID-19 CT Scan Detection System</h3>
                     <p class="project-label">Medical AI | Ensemble Deep Learning | Full-Stack Application</p>
                     <p class="project-description">
                         Enterprise-grade AI-powered web application that detects COVID-19 from chest CT scan images using ensemble deep learning. 
@@ -469,9 +485,12 @@
                 </div>
 
                 <!-- Project 3: PhishGuard -->
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-shield-alt"></i>
+                <div class="project-card" style="animation-delay: 0.2s">
+                    <div class="project-thumbnail">
+                        <img src="assets/images/projects/phishguard.png" alt="PhishGuard AI Phishing Detection" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder')">
+                        <div class="project-thumbnail-overlay">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
                     </div>
                     <h3>PhishGuard - AI Phishing Detection</h3>
                     <p class="project-description">
@@ -502,9 +521,12 @@
                 </div>
 
                 <!-- Project 4: AI Voice Agent -->
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-microphone-alt"></i>
+                <div class="project-card" style="animation-delay: 0.3s">
+                    <div class="project-thumbnail">
+                        <img src="assets/images/projects/voice-agent.png" alt="AI Voice Agent RAG Platform" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder')">
+                        <div class="project-thumbnail-overlay">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
                     </div>
                     <h3>AI Voice Agent - Multi-Model RAG Platform</h3>
                     <p class="project-description">
@@ -528,16 +550,19 @@
                         <button class="btn-demo" onclick="openVideoModal('video-modal-4')">
                             <i class="fas fa-play-circle"></i> Watch Demo
                         </button>
-                        <a href="https://github.com/tashfeenraza297/TechNova-AI-Receptionist" target="_blank" rel="noopener noreferrer" class="project-link">
+                        <a href="https://github.com/tashfeenraza297/enterprise-ai-voice-agent-" target="_blank" rel="noopener noreferrer" class="project-link">
                             <i class="fab fa-github"></i> View Code
                         </a>
                     </div>
                 </div>
 
                 <!-- Project 5: TechNova AI Receptionist -->
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-concierge-bell"></i>
+                <div class="project-card" style="animation-delay: 0.4s">
+                    <div class="project-thumbnail">
+                        <img src="assets/images/projects/technova.png" alt="TechNova AI Receptionist" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder')">
+                        <div class="project-thumbnail-overlay">
+                            <i class="fas fa-concierge-bell"></i>
+                        </div>
                     </div>
                     <h3>TechNova AI Receptionist</h3>
                     <p class="project-description">
@@ -566,45 +591,35 @@
     </section>
 
     <!-- Video Modals -->
-    <div id="video-modal-1" class="video-modal">
+    <div id="video-modal-1" class="video-modal" data-video-src="https://drive.google.com/file/d/1Jht80mhhcLy3zKue-T5wEQ9kRDRjRIwG/preview">
         <div class="modal-content">
             <span class="close-modal" onclick="closeVideoModal('video-modal-1')">&times;</span>
-            <iframe src="https://drive.google.com/file/d/1Jht80mhhcLy3zKue-T5wEQ9kRDRjRIwG/preview" 
-                    allow="autoplay"
-                    frameborder="0">
-            </iframe>
+            <iframe allow="autoplay" frameborder="0"></iframe>
         </div>
     </div>
 
-    <div id="video-modal-2" class="video-modal">
+    <div id="video-modal-2" class="video-modal" data-video-src="https://drive.google.com/file/d/1DV4lfy7oihqompDGTNybRS7_rBKDAlKo/preview">
         <div class="modal-content">
             <span class="close-modal" onclick="closeVideoModal('video-modal-2')">&times;</span>
-            <iframe src="https://drive.google.com/file/d/1DV4lfy7oihqompDGTNybRS7_rBKDAlKo/preview" 
-                    allow="autoplay"
-                    frameborder="0">
-            </iframe>
+            <iframe allow="autoplay" frameborder="0"></iframe>
         </div>
     </div>
 
-    <div id="video-modal-3" class="video-modal">
+    <div id="video-modal-3" class="video-modal" data-video-src="https://drive.google.com/file/d/1E-9IslydR2zR_NWOE2DVOtO74DDlWY1A/preview">
         <div class="modal-content">
             <span class="close-modal" onclick="closeVideoModal('video-modal-3')">&times;</span>
-            <iframe src="https://drive.google.com/file/d/1E-9IslydR2zR_NWOE2DVOtO74DDlWY1A/preview" 
-                    allow="autoplay"
-                    frameborder="0">
-            </iframe>
+            <iframe allow="autoplay" frameborder="0"></iframe>
         </div>
     </div>
 
-    <div id="video-modal-4" class="video-modal">
+    <div id="video-modal-4" class="video-modal" data-video-src="https://drive.google.com/file/d/1s3HvzqKjVE9iJ5KBph6piIovo_VWYYk8/preview">
         <div class="modal-content">
             <span class="close-modal" onclick="closeVideoModal('video-modal-4')">&times;</span>
-            <iframe src="https://drive.google.com/file/d/1s3HvzqKjVE9iJ5KBph6piIovo_VWYYk8/preview" 
-                    allow="autoplay"
-                    frameborder="0">
-            </iframe>
+            <iframe allow="autoplay" frameborder="0"></iframe>
         </div>
     </div>
+
+    <div class="section-divider"></div>
 
     <!-- Education Section -->
     <section class="education section" id="education">
@@ -646,6 +661,8 @@
             </div>
         </div>
     </section>
+
+    <div class="section-divider"></div>
 
     <!-- Contact Section -->
     <section class="contact section" id="contact">
@@ -734,10 +751,32 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Tashfeen Raza. All rights reserved.</p>
-            <p class="footer-tagline">Built with passion for AI & Machine Learning</p>
+            <div class="footer-content">
+                <div class="footer-logo">TR<span style="-webkit-text-fill-color: #06b6d4;">.</span></div>
+                <div class="footer-social">
+                    <a href="https://github.com/tashfeenraza297" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/tashfeen-raza-2a8b35253" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.fiverr.com/tashfeen348" target="_blank" rel="noopener noreferrer" aria-label="Fiverr">
+                        <i class="fas fa-briefcase"></i>
+                    </a>
+                    <a href="mailto:razatashfeen045@gmail.com" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                <p>&copy; 2026 Tashfeen Raza. All rights reserved.</p>
+                <p class="footer-tagline">Built with passion for AI & Machine Learning</p>
+            </div>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
 
     <!-- Custom JavaScript -->
     <script src="js/main.js"></script>
