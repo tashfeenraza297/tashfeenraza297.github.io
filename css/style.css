@@ -793,18 +793,21 @@ body.light-theme .timeline-content {
 /* Project Thumbnail */
 .project-thumbnail {
     position: relative;
-    width: 100%;
+    width: calc(100% + 4rem);
+    margin: -2rem -2rem 1.5rem -2rem;
     height: 200px;
-    border-radius: 10px;
+    border-radius: 15px 15px 0 0;
     overflow: hidden;
-    margin-bottom: 1.5rem;
     background: var(--gradient-card);
+    flex-shrink: 0;
 }
 
 .project-thumbnail img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top center;
+    display: block;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1853,6 +1856,8 @@ body.light-theme .footer {
 
     .project-thumbnail {
         height: 180px;
+        width: calc(100% + 2rem);
+        margin: -1rem -1rem 1rem -1rem;
     }
 
     .skills-grid {
