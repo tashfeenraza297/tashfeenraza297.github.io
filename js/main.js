@@ -247,6 +247,8 @@ const navbar = document.getElementById('navbar');
 // ===================================
 const backToTopBtn = document.getElementById('backToTop');
 
+const scrollProgressBar = document.getElementById('scrollProgress');
+
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
 
@@ -263,6 +265,13 @@ window.addEventListener('scroll', () => {
         } else {
             backToTopBtn.classList.remove('visible');
         }
+    }
+
+    // Scroll progress bar
+    if (scrollProgressBar) {
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPct = docHeight > 0 ? (currentScroll / docHeight) * 100 : 0;
+        scrollProgressBar.style.width = scrollPct + '%';
     }
 
     updateActiveNavLink();
